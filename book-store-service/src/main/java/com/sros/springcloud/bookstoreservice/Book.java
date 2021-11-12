@@ -1,4 +1,4 @@
-package com.sros.springcloud.bookservice;
+package com.sros.springcloud.bookstoreservice;
 
 import lombok.Data;
 import lombok.NonNull;
