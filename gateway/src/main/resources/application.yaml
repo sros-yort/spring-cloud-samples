@@ -2,11 +2,58 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: book-server
+        - id: book-service
           uri: http://localhost:8081
           predicates:
             - Path=/books
-        - id: book-sotre-server
-          uri: http://localhost:8082
+            - Cookie=uuid,123
+            - Header=id, \d+
+#            - Host=**.somehost.org,**.anotherhost.org
+#            - Method=GET,POST
+#            - Query=green,adsas
+#            - RemoteAddr=192.168.1.1/24
+#            - Weight=group1, 8
+#            - After=2021-10-14T17:42:47.789-07:00[Asia/Phnom_Penh]
+#            - Before=2022-01-20T17:42:47.789-07:00[Asia/Phnom_Penh]
+#            - Between=2021-10-12T17:42:47.789-07:00[Asia/Phnom_Penh],2022-01-20T17:42:47.789-07:00[Asia/Phnom_Penh]
+#          filters:
+            # Modify Request
+#            - AddRequestHeader=id, 2
+#            - MapRequestHeader=id, 3 # map from header to header
+#            - AddRequestParameter=foo, bar-{segment}
+#            - AddResponseHeader=X-Response-Red, Blue
+#            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+#            - PrefixPath=/v1
+#            - RedirectTo=302, localhost:8081/books
+            # Modify Response
+#            - RemoveResponseHeader=X-Response-Foo
+#            - RemoveRequestParameter=red
+#            - RewritePath=/red(?<segment>/?.*), $\{segment} #For a request path of /red/blue, this sets the path to /blue
+#            - RewriteResponseHeader=X-Response-Red, , password=[^&]+, password=*** # For a header value of /42?user=ford&password=omg!what&flag=true
+#            - SetRequestHeader=X-Request-Red, Blue
+#            - SetResponseHeader=X-Response-Red, Blue
+#            - SetPath=/books/{segment}
+#            - StripPrefix=2 # When a request is made through the gateway to /name/blue/red, the request made to nameservice looks like nameservice/red.
+#            - name: Retry
+#              args:
+#                retries: 3
+#                statuses: BAD_GATEWAY
+#                methods: GET,POST
+#                backoff:
+#                  firstBackoff: 10ms
+#                  maxBackoff: 50ms
+#                  factor: 2
+#                  basedOnPreviousValue: false
+#            - name: RequestSize
+#              args:
+#                maxSize: 5000000 # bytes = 5MB
+        # Weight
+#        - id: book-service-2
+#          uri: http://localhost:8081
+#          predicates:
+#            - Weight=group2, 2
+        # Book Store Service
+        - id: book-store-service
+          uri: http://localhost:8080
           predicates:
             - Path=/book-stores

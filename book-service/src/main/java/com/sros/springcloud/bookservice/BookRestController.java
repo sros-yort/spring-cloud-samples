@@ -2,6 +2,7 @@ package com.sros.springcloud.bookservice;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BookRestController {
     }
 
     @GetMapping
-    public List<Book> getAll() {
+    public List<Book> getAll(HttpServletRequest httpServletRequest) {
         return books;
     }
 
