@@ -2,5 +2,5 @@ server:
   port: 8761
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: false # false as it is the server itself, and it doesn’t have to register itself.
+    fetchRegistry: false # is also client-specific. The client uses this to fetch the registry information from the server and caches locally.
