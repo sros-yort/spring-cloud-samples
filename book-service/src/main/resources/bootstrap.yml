@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    config:
+     uri: ${CONFIG_SERVER:http://user:password@localhost:8888}
