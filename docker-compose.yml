@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  config-server:
+    build:
+      context: spring-cloud-config-server
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    expose:
+      - 8888
+  book-service:
+    depends_on:
+      - config-server
+    build:
+      context: book-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    expose:
+      - 8081
